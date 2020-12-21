@@ -1,19 +1,53 @@
+import java.util.*;
+
 public class Sudoku {
     public static void main(String[] args) {
-        int [][] matrix = new int[][]
-                {
-                        { 0, 0, 4, 0, 0, 0, 7, 6, 8 },
-                        { 3, 0, 0, 4, 5, 0, 0, 2, 0 },
-                        { 0, 0, 0, 0, 9, 8, 0, 0, 0 },
-                        { 1, 6, 9, 0, 0, 0, 0, 0, 0 },
-                        { 0, 5, 0, 9, 0, 7, 0, 8, 0 },
-                        { 0, 0, 0, 0, 0, 0, 1, 9, 5 },
-                        { 0, 0, 0, 5, 4, 0, 0, 0, 0 },
-                        { 0, 4, 0, 0, 6, 3, 0, 0, 9 },
-                        { 2, 1, 3, 0, 0, 0, 6, 0, 0 }
-                };
+	Scanner sc = new Scanner(System.in);
+        int [][] matrix = new int[9][9];
+	System.out.println("This app is help you to solve the Sudoku");
+	System.out.println("Please enter the number, if it is blank, just type 0:");
+	System.out.println("Each line only can enter 9 number");
+	System.out.println("Example:");
+	System.out.println("004000768");
 
-        if(SolveSuduko(matrix, 9)){
+	for(int i = 0; i < 9; i++){
+		char[] temp = sc.next().toCharArray();
+		if(temp.length > 9){
+			System.out.println("You entered too much number, please try again");
+			i--;
+		}
+		else if(temp.length < 9){
+			System.out.println("You entered less than 9 number, please try again");
+			i--;
+		}
+		else{
+			for(int j = 0; j < 9; j++){
+				if(temp[j] >= '0'&& temp[j] <= '9'){
+					matrix[i][j] = temp[j] - '0';
+				}
+				else{
+					System.out.println("You entered a invalid word, please enter only number");
+					i--;
+					break;
+				}
+			}
+		}
+	}
+
+	/* 	example
+	 * { 0, 0, 4, 0, 0, 0, 7, 6, 8 },          
+	 * { 3, 0, 0, 4, 5, 0, 0, 2, 0 },
+	 * { 0, 0, 0, 0, 9, 8, 0, 0, 0 },
+	 * { 1, 6, 9, 0, 0, 0, 0, 0, 0 },
+	 * { 0, 5, 0, 9, 0, 7, 0, 8, 0 },
+         * { 0, 0, 0, 0, 0, 0, 1, 9, 5 },
+         * { 0, 0, 0, 5, 4, 0, 0, 0, 0 },
+         * { 0, 4, 0, 0, 6, 3, 0, 0, 9 },
+         * { 2, 1, 3, 0, 0, 0, 6, 0, 0 }
+         */ 
+
+
+	if(SolveSuduko(matrix, 9)){
             for (int i = 0; i < 9; i++) {
                 for (int j = 0; j < 9; j++) {
                     System.out.print(matrix[i][j]+"\t");
