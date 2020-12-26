@@ -1,7 +1,10 @@
 import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 
 public class Sudoku {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException{
 	Scanner sc = new Scanner(System.in);
         int [][] matrix = new int[9][9];
 	System.out.println("This app is help you to solve the Sudoku");
@@ -40,19 +43,23 @@ public class Sudoku {
 	 * { 0, 0, 0, 0, 9, 8, 0, 0, 0 },
 	 * { 1, 6, 9, 0, 0, 0, 0, 0, 0 },
 	 * { 0, 5, 0, 9, 0, 7, 0, 8, 0 },
-         * { 0, 0, 0, 0, 0, 0, 1, 9, 5 },
-         * { 0, 0, 0, 5, 4, 0, 0, 0, 0 },
-         * { 0, 4, 0, 0, 6, 3, 0, 0, 9 },
-         * { 2, 1, 3, 0, 0, 0, 6, 0, 0 }
-         */ 
+     * { 0, 0, 0, 0, 0, 0, 1, 9, 5 },
+     * { 0, 0, 0, 5, 4, 0, 0, 0, 0 },
+     * { 0, 4, 0, 0, 6, 3, 0, 0, 9 },
+     * { 2, 1, 3, 0, 0, 0, 6, 0, 0 }
+    */ 
 
+	//create file for save word
+	File file = new File("/ans.txt");
+	file.createNewFile();
+	FileWriter myWriter = new FileWriter(file);
 
 	if(SolveSuduko(matrix, 9)){
             for (int i = 0; i < 9; i++) {
                 for (int j = 0; j < 9; j++) {
-                    System.out.print(matrix[i][j]+"\t");
+                    myWriter.write(matrix[i][j]+"\t");
                 }
-                System.out.println();
+                myWriter.write("\n");
             }
         }
 
