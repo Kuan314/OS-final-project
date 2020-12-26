@@ -2,9 +2,10 @@ import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 
 public class Sudoku {
-    public static void main(String[] args) throws FileNotFoundException{
+    public static void main(String[] args) throws FileNotFoundException, IOException{
 	Scanner sc = new Scanner(System.in);
         int [][] matrix = new int[9][9];
 	System.out.println("This app is help you to solve the Sudoku");
@@ -50,20 +51,22 @@ public class Sudoku {
     */ 
 
 	//create file for save word
-	File file = new File("/ans.txt");
+	File file = new File("./Desktop/ans.txt");
 	file.createNewFile();
 	FileWriter myWriter = new FileWriter(file);
 
 	if(SolveSuduko(matrix, 9)){
-            for (int i = 0; i < 9; i++) {
-                for (int j = 0; j < 9; j++) {
-                    myWriter.write(matrix[i][j]+"\t");
-                }
-                myWriter.write("\n");
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                myWriter.write(matrix[i][j]+"\t");
             }
+            myWriter.write("\n");
         }
-
     }
+
+    sc.close();
+    myWriter.close();
+}
 
     public static boolean SolveSuduko(int [][]matrix, int n){
         int rowIndex = -1;
